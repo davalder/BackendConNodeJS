@@ -5,7 +5,9 @@ const err = fs.createWriteStream('./err.log');
 
 const consoleFile = new console.Console(out, err);
 
-setInterval(() => {
-    consoleFile.log(new Date());
-    consoleFile.error(new Error('Oooops'));
-}, 2000);
+console.log(consoleFile);
+
+// setInterval(() => {
+//     consoleFile.log(new Date());
+//     consoleFile.error(new Error('Oooops'));
+// }, 2000);
