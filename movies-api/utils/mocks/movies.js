@@ -141,7 +141,11 @@ const moviesMock = [
 ];
 
 function filteredMoviesMock(tag) {
-    return moviesMock.filter(movie => movie.tags.includes(tag));
+    return moviesMock.filter(movie => movie.tags.includes(tag)) || [];
+}
+
+function finOneMovieMock(id) {
+    return moviesMock.find((movie) => movie.id === id);
 }
 
 class MoviesServiceMock {
@@ -149,7 +153,19 @@ class MoviesServiceMock {
         return Promise.resolve(moviesMock);
     }
 
+    async getMovie({ movieId }) {
+        return await Promise.resolve(finOneMovieMock(movieId));
+    }
+
     async createMovie() {
+        return Promise.resolve(moviesMock[0].id);
+    }
+
+    async updateMovie() {
+        return Promise.resolve(moviesMock[1]);
+    }
+
+    async deleteMovie() {
         return Promise.resolve(moviesMock[0]);
     }
 }
@@ -157,5 +173,6 @@ class MoviesServiceMock {
 module.exports = {
     moviesMock,
     filteredMoviesMock,
+    finOneMovieMock,
     MoviesServiceMock
 }
